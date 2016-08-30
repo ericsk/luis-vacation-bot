@@ -34,7 +34,7 @@
     {
       "name": "星期",
       "mode": true,
-      "words": "星期日,星期一,星期二,星期三,星期四,星期五,星期六",
+      "words": "星期日,星期一,星期二,星期三,星期四,星期五,星期六,週日,週一,週二,週三,週四,週五,週六",
       "activated": true
     }
   ],
@@ -145,6 +145,494 @@
       "text": "我的假還剩多少?",
       "intent": "查詢假期",
       "entities": []
+    },
+    {
+      "text": "我想在下星期一請事假三小時",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 8,
+          "endPos": 9
+        },
+        {
+          "entity": "時數",
+          "startPos": 10,
+          "endPos": 12
+        },
+        {
+          "entity": "日期",
+          "startPos": 3,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "我要請病假",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "我要請婚假",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "我的特休還有多少",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 2,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "我還剩多少特休",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 5,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "我的病假還有幾天",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 2,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "我還有幾天特休?",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 5,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "我想請特休",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "我想請兩小時特休",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 6,
+          "endPos": 7
+        },
+        {
+          "entity": "時數",
+          "startPos": 3,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "我想在後天請半天特休",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 8,
+          "endPos": 9
+        },
+        {
+          "entity": "時數",
+          "startPos": 6,
+          "endPos": 7
+        },
+        {
+          "entity": "日期",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "我明天要請特休",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 5,
+          "endPos": 6
+        },
+        {
+          "entity": "日期",
+          "startPos": 1,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "我明天想請病假",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 5,
+          "endPos": 6
+        },
+        {
+          "entity": "日期",
+          "startPos": 1,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "我大後天想請事假一小時",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 6,
+          "endPos": 7
+        },
+        {
+          "entity": "時數",
+          "startPos": 8,
+          "endPos": 10
+        },
+        {
+          "entity": "日期",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "我下個月三號要請事假",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 8,
+          "endPos": 9
+        },
+        {
+          "entity": "日期",
+          "startPos": 1,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "我今年還有假嗎?",
+      "intent": "查詢假期",
+      "entities": []
+    },
+    {
+      "text": "我還剩多少假",
+      "intent": "查詢假期",
+      "entities": []
+    },
+    {
+      "text": "我還有多少病假能請",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 5,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "我明天要請病假了",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 5,
+          "endPos": 6
+        },
+        {
+          "entity": "日期",
+          "startPos": 1,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "我後天要請特休",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 5,
+          "endPos": 6
+        },
+        {
+          "entity": "日期",
+          "startPos": 1,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "下週二我特休",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 4,
+          "endPos": 5
+        },
+        {
+          "entity": "日期",
+          "startPos": 0,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "下星期五我要特休半天",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 6,
+          "endPos": 7
+        },
+        {
+          "entity": "時數",
+          "startPos": 8,
+          "endPos": 9
+        },
+        {
+          "entity": "日期",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "特休還剩多少",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 0,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "我想在十月十日請特休",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 8,
+          "endPos": 9
+        },
+        {
+          "entity": "日期",
+          "startPos": 3,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "下星期一我要請事假五個小時",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 7,
+          "endPos": 8
+        },
+        {
+          "entity": "時數",
+          "startPos": 9,
+          "endPos": 12
+        },
+        {
+          "entity": "日期",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "我還有多少事假",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 5,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "我的事假還剩多少",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 2,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "我還有特休嗎",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "我還能請病假嗎?",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 4,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "我能請特休嗎?",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "我要請五天特休",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 5,
+          "endPos": 6
+        },
+        {
+          "entity": "時數",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "我要請三天事假",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 5,
+          "endPos": 6
+        },
+        {
+          "entity": "時數",
+          "startPos": 3,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "我要請特休四天",
+      "intent": "請假",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 3,
+          "endPos": 4
+        },
+        {
+          "entity": "時數",
+          "startPos": 5,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "我還有假嗎",
+      "intent": "查詢假期",
+      "entities": []
+    },
+    {
+      "text": "我還能放假嗎",
+      "intent": "查詢假期",
+      "entities": []
+    },
+    {
+      "text": "我的特休放完了嗎?",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 2,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "我的病假都沒了嗎",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 2,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "我的特休還剩多少",
+      "intent": "查詢假期",
+      "entities": [
+        {
+          "entity": "類別",
+          "startPos": 2,
+          "endPos": 3
+        }
+      ]
     }
   ]
 }
