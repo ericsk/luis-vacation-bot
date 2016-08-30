@@ -1,0 +1,9 @@
+{
+  "name": "skvacationbot",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "botbuilder": "^3.2.2",
+    "restify": "^4.1.1"
+  }
+}
