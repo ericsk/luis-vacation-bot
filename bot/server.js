@@ -49,12 +49,69 @@ dialog.matches('查詢假期', [
 ]);
 
 dialog.matches('請假', [
+    function (session, args, next) {
+        session.beginDialog('/ensureApplication', args);
+    },
     function (session, results) {
-        session.send("OK, 不好");
+        var vacationInfo = results.response;
+        session.send('你想在 %s 請 %s 小時的 %s', vacationInfo.date, vacationInfo.length, vacationInfo.type);
     }
 ]);
 
 dialog.onDefault(builder.DialogAction.send("很抱歉我不確定您想做什麼？試試「我的假還剩多少?」或「我想在下週三請兩個小時的假」"));
+
+bot.dialog('/ensureApplication', [
+    function (session, args, next) {
+        var dateEntity = builder.EntityRecognizer.findEntity(args.entities, "日期");
+        var lengthEntity = builder.EntityRecognizer.findEntity(args.entities, "時數");
+        var typeEntity = builder.EntityRecognizer.findEntity(args.entities, "類別");
+
+        var vacationInfo = session.dialogData.vacationInfo = {
+            'date': dateEntity ? dateEntity.entity : null,
+            'length': lengthEntity ? lengthEntity.entity : null,
+            'type': typeEntity ? typeEntity.entity : null            
+        };
+
+        if (vacationInfo.date === null) {
+            builder.Prompts.time(session, "請問要在哪一天請假？");
+        } else {
+            next();
+        }
+
+    },
+    function (session, results, next) {
+        // check date field
+        var vacationInfo = session.dialogData.vacationInfo;
+        if (results.response) {
+            session.dialogData.vacationInfo.date = results.response;
+        }
+
+        if (vacationInfo.length === null) {
+            builder.Prompts.number(session, "請問要請幾個小時？");
+        } else {
+            next();
+        }
+    },
+    function (session, results, next) {
+        // check length field
+        var vacationInfo = session.dialogData.vacationInfo;
+        if (results.response) {
+            session.dialogData.vacationInfo.length = results.response;
+        }
+
+        if (vacationInfo.type === null) {
+            builder.Prompts.choice(session, "請問您要請哪種假？", ["特休", "事假", "病假"]);
+        } else {
+            next();
+        }
+    },
+    function (session, results) {
+        if (results.response) {
+            session.dialogData.vacationInfo.type = results.response.entity;
+        }
+        session.endDialogWithResult({ response: session.dialogData.vacationInfo  });
+    }
+]);
 
 var vacations = {
     '特休': 7 * 8,
