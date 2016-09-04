@@ -182,37 +182,7 @@ var parseDate = function(vacationDate) {
             dist = day - thisDay;
         }
 
-        var newMonth = today.getMonth();
-        var newDate = today.getDate() + dist;
-
-        if (newMonth == 0 || newMonth == 2 || newMonth == 4 || newMonth == 6 ||
-            newMonth == 7 || newMonth == 9 || newMonth == 11) {
-            if (newDate > 31) {
-                newMonth = (newMonth + 1 ) % 12;
-                newDate = newDate - 31;
-            }
-        } else if (newMonth == 3 || newMonth == 5 ||
-                   newMonth == 8 || newMonth == 10) {
-            if (newDate > 30 ) {
-                newMonth++;
-                newDate = newDate - 30;
-            }
-        } else {    // 2 月
-            var thisYear = today.getFullYear();
-            if (thisYear % 400 == 0 || (thisYear % 4 == 0 && thisYear % 100 != 0) ) {
-                if (newDate > 29) {
-                    newMonth++;
-                    newDate -= 29;
-                }
-            } else {
-                if (newDate > 28) {
-                    newMonth++;
-                    newDate -= 28;
-                }
-            }
-        }
-
-        return new Date(today.getFullYear(), newMonth, newDate);
+        return new Date(today.getTime() + dist * 86400000);
     }
 
     return theDate;
