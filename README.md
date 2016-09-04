@@ -1,6 +1,8 @@
 # luis-vacation-bot
 使用 LUIS + Bot Framework 打造請假對談機器人，其中 [LUIS](http://luis.ai/) 負責解析語言的部份，而 [Bot Framework](https://dev.botframework.com/) 則是完成對談機器人的製作。
 
+![在 Skype 中的 Bot 行為展示](images/bot.png)
+
 # LUIS 安裝說明
 
 登入 [LUIS](http://luis.ai) 後，在 _My Applications_ 頁面，點選 _New App_ 然後選擇 **Import Existing Application**
