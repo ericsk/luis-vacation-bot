@@ -54,7 +54,8 @@ dialog.matches('請假', [
     },
     function (session, results) {
         var vacationInfo = results.response;
-        session.send('你想在 %s 請 %s 小時的 %s', vacationInfo.date, vacationInfo.length, vacationInfo.type);
+        var vCount = parseHours(vacationInfo.length);
+        session.send('你想在 %s 請 %d 小時的 %s', vacationInfo.date, vCount, vacationInfo.type);
     }
 ]);
 
@@ -117,4 +118,58 @@ var vacations = {
     '特休': 7 * 8,
     '事假': 6 * 8,
     '病假': 5 * 8
+};
+
+/**
+ * 分析請假時數可能的語句，轉換成純數字的小時數。
+ * @param {string} vacationLength 請假時數的原句
+ * @returns {number} 請假時數的數值
+ */
+var parseHours = function(vacationLength) {
+    var num = 0;
+
+    // 2.5 個小時、4個小時
+    num = parseFloat(vacationLength);
+    if (!isNaN(num)) {
+        return num;
+    }
+
+    // 兩個半小時、四個小時
+    var regex = new RegExp(/([一,二,兩,三,四,五,六,七,八,九,十])/);
+    var mat = vacationLength.match(regex);
+    if (mat !== null) {
+        num = chntbl[mat[1]];
+        if (vacationLength.indexOf('半') > -1) {
+            num += 0.5;
+        }
+    }
+    if (num > 0) {
+        return num;
+    }
+
+    // 半天, 整天
+    if (vacationLength.indexOf('天') > -1) {
+        if (vacationLength.indexOf('半') > -1) {
+            num = 4;
+        } else if (vacationLength.indexOf('全') > -1 ||
+                   vacationLength.indexOf('整') > -1) {
+            num = 8;
+        }
+    }
+
+    return num;
+};
+
+var chntbl = {
+    '一': 1,
+    '二': 2,
+    '兩': 2,
+    '三': 3,
+    '四': 4,
+    '五': 5,
+    '六': 6,
+    '七': 7,
+    '八': 8,
+    '九': 9,
+    '十': 10
 };
