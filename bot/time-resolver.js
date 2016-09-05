@@ -15,6 +15,12 @@ var chntbl = {
     '十': 10
 };
 
+var wordtbl = {
+    today: '(?:今|今天|今日)',
+    tomorrow: '(?:明|明天|明日)',
+    acquired:'(?:後天|後日)'
+};
+
 /**
  * 分析請假日期的語句，並將之轉換成 JavaScript 的 Date 資料型態的資料
  * @param {string} vacationDate 請假日期的語句
@@ -30,6 +36,15 @@ function parseDate(vacationDate) {
         theDate = new Date(theDate);
         theDate.setYear(today.getFullYear());
         return theDate;
+    }
+
+     //今天，明天，後天
+    if(vacationDate.match(new RegExp(wordtbl.today))){
+        return new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    }else if(vacationDate.match(new RegExp(wordtbl.tomorrow))){
+        return new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    }else if(vacationDate.match(new RegExp(wordtbl.acquired))){
+        return new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2);
     }
 
     // x月x日、x月x號
