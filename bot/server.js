@@ -37,7 +37,7 @@ dialog.matches('查詢假期', [
         var vacationType = session.dialogData.vacationType = typeEntity ? typeEntity.entity : null;
 
         if (vacationType === null) {
-            builder.Prompts.text(session, "請問您要查詢哪種假？");
+            builder.Prompts.choice(session, "請問您要查詢哪種假？", ["特休", "事假", "病假"]);
         } else {
             next();
         }
@@ -45,7 +45,7 @@ dialog.matches('查詢假期', [
     function (session, results) {
         var vacationType = session.dialogData.vacationType;
         if (results.response) {
-            vacationType = results.response;
+            vacationType = results.response.entity;
         }
 
         session.send("瞭解，您的 %s 還有 %d 小時", vacationType, vacations[vacationType]);
@@ -79,7 +79,7 @@ bot.dialog('/ensureApplication', [
         };
 
         if (vacationInfo.date === null) {
-            builder.Prompts.time(session, "請問要在哪一天請假？");
+            builder.Prompts.text(session, "請問要在哪一天請假？");
         } else {
             next();
         }
