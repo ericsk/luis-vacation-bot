@@ -60,7 +60,8 @@ dialog.matches('請假', [
         var vacationInfo = results.response;
         var vDate = timeResolver.parseDate(vacationInfo.date);
         var vCount = timeResolver.parseHours(vacationInfo.length);
-        session.send('你想在 %s 請 %d 小時的 %s', vDate.toString(), vCount, vacationInfo.type);
+        session.send('你想在 %d 月 %d 日請 %d 小時的 %s', 
+            vDate.getMonth() + 1, vDate.getDate(), vCount, vacationInfo.type);
     }
 ]);
 
