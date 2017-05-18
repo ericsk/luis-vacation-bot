@@ -3,7 +3,19 @@
   "version": "1.0.0",
   "main": "server.js",
   "dependencies": {
-    "botbuilder": "^3.2.2",
-    "restify": "^4.1.1"
+    "botbuilder": "^3.8.3",
+    "restify": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.18",
+    "@types/restify": "^4.3.1",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.0.4",
+    "typescript": "^2.3.2"
+  },
+  "scripts": {
+    "start": "npm run build:live",
+    "build": "./node_modules/.bin/tsc -p .",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- server.ts"
   }
 }

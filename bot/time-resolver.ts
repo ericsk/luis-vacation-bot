@@ -1,5 +1,6 @@
+
 // 轉換星期文字到數字的表
-var chntbl = {
+const chntbl: any = {
     '天': 0,
     '日': 0,
     '一': 1,
@@ -15,7 +16,7 @@ var chntbl = {
     '十': 10
 };
 
-var wordtbl = {
+const wordtbl: any = {
     today: '(?:今|今天|今日)',
     tomorrow: '(?:明|明天|明日)',
     acquired:'(?:後天|後日)'
@@ -26,9 +27,9 @@ var wordtbl = {
  * @param {string} vacationDate 請假日期的語句
  * @returns {Date} 請假的確切日期
  */
-function parseDate(vacationDate) {
-    var today = new Date();
-    var theDate;
+export let parseDate = (vacationDate: string): Date => {
+    let today: Date = new Date();
+    let theDate: any;
 
     // 9/6, 10/5
     theDate = Date.parse(vacationDate);
@@ -48,47 +49,57 @@ function parseDate(vacationDate) {
     }
 
     // x月x日、x月x號
-    var regex = new RegExp(/(.*)?月(.*)?[日,號]/);
-    var mat = vacationDate.match(regex);
+    let regex: RegExp = new RegExp(/(.*)?月(.*)?[日,號]/);
+    let mat: RegExpMatchArray = vacationDate.match(regex);
     if (mat !== null) {
-        var month = mat[1];
-        var date = mat[2];
+        let month: string = mat[1];
+        let date: string = mat[2];
+
+        let monthInt: number;
+        let dateInt: number;
 
         if (!/\d/.test(month)) {
-            var m = 0;
-            for (var i = 0; i < month.length; ++i) {
+            let m: number = 0;
+            for (let i: number = 0; i < month.length; ++i) {
                 m = m * 10 + chntbl[month[i]];
             }
-            month = m;
+            monthInt = m;
+        } else {
+            monthInt = Number.parseInt(month);
         }
 
         if (!/\d/.test(date)) {
-            var d = 0;
-            for (var i = 0; i < date.length; ++i) {
+            let d: number = 0;
+            for (let i = 0; i < date.length; ++i) {
                 d = d * 10 + chntbl[date[i]];
             }
-            date = d;
+            dateInt = d;
+        } else {
+            dateInt = Number.parseInt(date);
         }
 
-        return new Date(today.getFullYear(), month - 1, date);
+        return new Date(today.getFullYear(), monthInt - 1, dateInt);
     }
 
     // 這週三, 下星期五
     regex = new RegExp(/([天日一二三四五六七八九十\d])/);
     mat = vacationDate.match(regex);
     if (mat !== null) {
-        var day = mat[1];
-        var dist = 0;
-        var thisDay = today.getDay();
+        let day: string = mat[1];
+        let dayInt: number;
+        let dist: number = 0;
+        let thisDay: number = today.getDay();
 
         if (!/\d/.test(day)) {
-            day = chntbl[day];
+            dayInt = chntbl[day];
+        } else {
+            dayInt = Number.parseInt(day);
         }
 
         if (vacationDate.indexOf('下') > -1) {
-            dist = 7 - thisDay + day;
+            dist = 7 - thisDay + dayInt;
         } else  {
-            dist = day - thisDay;
+            dist = dayInt - thisDay;
         }
 
         return new Date(today.getTime() + dist * 86400000);
@@ -96,15 +107,14 @@ function parseDate(vacationDate) {
 
     return theDate;
 }
-exports.parseDate = parseDate;
 
 /**
  * 分析請假時數可能的語句，轉換成純數字的小時數。
  * @param {string} vacationLength 請假時數的原句
  * @returns {number} 請假時數的數值
  */
-function parseHours(vacationLength) {
-    var num = 0;
+export let parseHours = (vacationLength: string): number => {
+    let num = 0;
 
     // 2.5 個小時、4個小時
     num = parseFloat(vacationLength);
@@ -113,8 +123,8 @@ function parseHours(vacationLength) {
     }
 
     // 兩個半小時、四個小時
-    var regex = new RegExp(/([一二兩三四五六七八九十])/);
-    var mat = vacationLength.match(regex);
+    let regex: RegExp = new RegExp(/([一二兩三四五六七八九十])/);
+    let mat: RegExpMatchArray = vacationLength.match(regex);
     if (mat !== null) {
         num = chntbl[mat[1]];
         if (vacationLength.indexOf('半') > -1) {
@@ -137,4 +147,3 @@ function parseHours(vacationLength) {
 
     return num;
 };
-exports.parseHours = parseHours;
