@@ -15,7 +15,6 @@
   },
   "scripts": {
     "start": "npm run build:live",
-    "build": "./node_modules/.bin/tsc -p .",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- server.ts"
+    "build:live": "nodemon --exec ts-node -- server.ts"
   }
 }
